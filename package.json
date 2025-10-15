@@ -1,0 +1,44 @@
+{
+  "name": "woocommerce-segmented-products-microservices",
+  "version": "1.0.0",
+  "description": "Full-stack microservices application for WooCommerce product segmentation",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "frontend"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "dev:product-service": "npm run dev --workspace=services/product-service",
+    "dev:segment-service": "npm run dev --workspace=services/segment-service",
+    "dev:gateway": "npm run dev --workspace=services/gateway",
+    "start:product-service": "npm run start --workspace=services/product-service",
+    "start:segment-service": "npm run start --workspace=services/segment-service",
+    "start:gateway": "npm run start --workspace=services/gateway",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "clean": "npm run clean --workspaces"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1",
+    "node-cron": "^4.2.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "keywords": [
+    "woocommerce",
+    "microservices",
+    "segmentation",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC"
+}
