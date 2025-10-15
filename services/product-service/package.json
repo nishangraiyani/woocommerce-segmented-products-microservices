@@ -1,0 +1,28 @@
+{
+  "name": "product-service",
+  "version": "1.0.0",
+  "description": "Product service for WooCommerce integration",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf node_modules"
+  },
+  "keywords": [
+    "woocommerce",
+    "microservices",
+    "products"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@woocommerce/shared": "file:../../packages/shared",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "node-cron": "^4.2.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
