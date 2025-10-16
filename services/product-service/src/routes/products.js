@@ -5,7 +5,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /products:
+ * /:
  *   get:
  *     summary: Get all products
  *     description: Retrieve a paginated list of all stored products
@@ -53,7 +53,7 @@ router.get("/", productController.getProducts.bind(productController));
 
 /**
  * @swagger
- * /products/ingest:
+ * /ingest:
  *   post:
  *     summary: Trigger manual product ingestion
  *     description: Manually trigger the ingestion process to fetch and store products from WooCommerce
