@@ -99,7 +99,7 @@ const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Routes
-app.use("/products", productRoutes);
+app.use("/", productRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {

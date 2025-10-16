@@ -5,7 +5,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /segments/evaluate:
+ * /evaluate:
  *   post:
  *     summary: Evaluate products based on text-based rules
  *     description: Parse and evaluate segmentation rules to filter products
@@ -90,7 +90,7 @@ router.post("/evaluate", segmentController.evaluateSegments);
 
 /**
  * @swagger
- * /segments/validate:
+ * /validate:
  *   post:
  *     summary: Validate segmentation rules without executing query
  *     description: Parse and validate rules to check syntax and allowed fields
@@ -136,7 +136,7 @@ router.post("/validate", segmentController.validateRules);
 
 /**
  * @swagger
- * /segments/meta:
+ * /meta:
  *   get:
  *     summary: Get segmentation metadata
  *     description: Retrieve information about allowed fields, operators, and examples

@@ -10,12 +10,12 @@
   ],
   "scripts": {
     "install:all": "npm install",
-    "dev:product-service": "npm run dev --workspace=services/product-service",
-    "dev:segment-service": "npm run dev --workspace=services/segment-service",
-    "dev:gateway": "npm run dev --workspace=services/gateway",
-    "start:product-service": "npm run start --workspace=services/product-service",
-    "start:segment-service": "npm run start --workspace=services/segment-service",
-    "start:gateway": "npm run start --workspace=services/gateway",
+    "dev:product-service": "npm run dev --workspace=product-service",
+    "dev:segment-service": "npm run dev --workspace=segment-service",
+    "dev:gateway-service": "npm run dev --workspace=gateway-service",
+    "start:product-service": "npm run start --workspace=product-service",
+    "start:segment-service": "npm run start --workspace=segment-service",
+    "start:gateway": "npm run start --workspace=gateway-service",
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces",
     "clean": "npm run clean --workspaces"
