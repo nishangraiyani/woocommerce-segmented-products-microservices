@@ -20,7 +20,6 @@ class ProductController {
         if (products.length === 0) {
           break;
         }
-        console.log("products[0]", products[0]);
         // Process products in batches
         const bulkOps = products.map((wcProduct) => {
           const productData = wooCommerceAPI.mapProductToSchema(wcProduct);

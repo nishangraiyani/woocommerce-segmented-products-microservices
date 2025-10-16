@@ -6,38 +6,31 @@
   "workspaces": [
     "packages/*",
     "services/*",
-    "frontend"
+    "app"
   ],
   "scripts": {
     "install:all": "npm install",
     "dev:product-service": "npm run dev --workspace=product-service",
     "dev:segment-service": "npm run dev --workspace=segment-service",
     "dev:gateway-service": "npm run dev --workspace=gateway-service",
+    "dev:app": "npm run dev --workspace=app",
     "start:product-service": "npm run start --workspace=product-service",
     "start:segment-service": "npm run start --workspace=segment-service",
     "start:gateway": "npm run start --workspace=gateway-service",
+    "start:app": "npm run start --workspace=app",
+    "build:app": "npm run build --workspace=app",
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces",
     "clean": "npm run clean --workspaces"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "dependencies": {
-    "axios": "^1.12.2",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "mongoose": "^8.19.1",
-    "node-cron": "^4.2.1",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
   },
   "keywords": [
     "woocommerce",
     "microservices",
     "segmentation",
     "nodejs",
-    "mongodb"
+    "mongodb",
+    "nextjs",
+    "react"
   ],
   "author": "",
   "license": "ISC"
