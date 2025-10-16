@@ -46,9 +46,9 @@ class WooCommerceAPI {
   mapProductToSchema(wcProduct) {
     this._ensureConfigured();
     return {
-      id: wcProduct.id,
+      _id: wcProduct.id,
       title: wcProduct.name,
-      price: wcProduct.price || "0",
+      price: parseFloat(wcProduct.price) || 0,
       stock_status: wcProduct.stock_status || "outofstock",
       stock_quantity:
         wcProduct.stock_quantity !== null

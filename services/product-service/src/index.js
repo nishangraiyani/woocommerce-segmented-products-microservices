@@ -81,12 +81,6 @@ const swaggerOptions = {
               description: "Whether product is on sale",
               example: false,
             },
-            created_at: {
-              type: "string",
-              format: "date-time",
-              description: "Creation date (ISO string)",
-              example: "2023-01-01T00:00:00.000Z",
-            },
           },
         },
       },

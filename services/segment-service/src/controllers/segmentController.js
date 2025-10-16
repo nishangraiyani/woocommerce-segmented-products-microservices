@@ -132,14 +132,12 @@ class SegmentController {
           "category",
           "tags",
           "on_sale",
-          "created_at",
         ],
         allowedOperators: ["=", ">", "<", ">=", "<=", "!="],
         fieldTypes: {
           id: "number",
           stock_quantity: "number",
           on_sale: "boolean",
-          created_at: "date",
           title: "string",
           price: "string",
           stock_status: "string",
@@ -150,7 +148,6 @@ class SegmentController {
           basic: "price > 100\nstock_status = instock",
           complex:
             "price >= 50\nprice <= 500\nstock_status = instock\non_sale = true",
-          date: "created_at >= 2023-01-01\ncreated_at <= 2023-12-31",
         },
       },
     });

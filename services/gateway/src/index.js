@@ -9,6 +9,7 @@ import createProxyRoutes from "./routes/proxy.js";
 import Cache from "./utils/cache.js";
 import HealthChecker from "./utils/healthCheck.js";
 import errorHandler from "./middleware/errorHandler.js";
+import apiKeyAuth from "./middleware/apiKeyAuth.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -43,7 +44,12 @@ app.use(
     origin: process.env.CORS_ORIGIN || "*",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "x-api-key",
+    ],
   })
 );
 
@@ -70,6 +76,9 @@ const limiter = rateLimit({
 
 // Apply rate limiting to API routes
 app.use("/api/", limiter);
+
+// API Key Authentication - Apply to all /api routes
+app.use("/api/", apiKeyAuth);
 
 // Logging middleware
 app.use(
@@ -114,10 +123,15 @@ app.get("/", (req, res) => {
   res.json({
     message: "API Gateway Service",
     version: "1.0.0",
+    authentication: {
+      required: true,
+      method: "x-api-key header",
+      note: "All /api/* endpoints require a valid API key in the x-api-key header",
+    },
     services: {
-      "GET /health": "Health check for all services",
-      "GET /api/products": "Product service endpoints",
-      "POST /api/segments": "Segment service endpoints",
+      "GET /health": "Health check for all services (no auth required)",
+      "GET /api/products": "Product service endpoints (auth required)",
+      "POST /api/segments": "Segment service endpoints (auth required)",
     },
     endpoints: {
       "GET /api/products": "Get all products (cached)",

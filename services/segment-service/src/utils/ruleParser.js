@@ -5,7 +5,6 @@
 
 // Allowed fields for segmentation
 const ALLOWED_FIELDS = new Set([
-  "id",
   "title",
   "price",
   "stock_status",
@@ -13,7 +12,6 @@ const ALLOWED_FIELDS = new Set([
   "category",
   "tags",
   "on_sale",
-  "created_at",
 ]);
 
 // Allowed operators
@@ -24,7 +22,6 @@ const FIELD_TYPES = {
   id: "number",
   stock_quantity: "number",
   on_sale: "boolean",
-  created_at: "date",
 };
 
 class RuleParser {
