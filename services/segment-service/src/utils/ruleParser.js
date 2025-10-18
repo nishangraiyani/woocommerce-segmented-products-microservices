@@ -45,7 +45,7 @@ class RuleParser {
       // Check operators in order of length (longest first to avoid conflicts)
       const operators = [">=", "<=", "!=", "=", ">", "<"];
       for (const op of operators) {
-        const index = trimmed.indexOf(op);
+        const index = condition.indexOf(op);
         if (index > 0) {
           // Must not be at the beginning
           operator = op;
@@ -58,8 +58,8 @@ class RuleParser {
         throw new Error(`No valid operator found in condition: ${trimmed}`);
       }
 
-      const field = trimmed.substring(0, operatorIndex).trim();
-      const value = trimmed.substring(operatorIndex + operator.length).trim();
+      const field = condition.substring(0, operatorIndex).trim();
+      const value = condition.substring(operatorIndex + operator.length).trim();
 
       if (!field) {
         throw new Error(`No field specified in condition: ${trimmed}`);
@@ -181,10 +181,6 @@ class RuleParser {
         }
         break;
 
-      case "date":
-        // For date fields, we'll accept ISO strings and validate during query conversion
-        break;
-
       default:
         // String fields - no specific validation needed
         break;
@@ -208,17 +204,28 @@ class RuleParser {
       const mongoCondition = this.convertConditionToMongo(condition);
 
       // For multiple conditions on the same field, combine them with $and
-      if (query[condition.field]) {
-        if (!query.$and) {
-          query.$and = [
-            { [condition.field]: query[condition.field] },
-            { [condition.field]: mongoCondition },
-          ];
-          delete query[condition.field];
-        } else {
+      if (query[condition.field] && !query.$and) {
+        // First duplicate - create $and array
+
+        query.$and = [
+          { [condition.field]: query[condition.field] },
+          { [condition.field]: mongoCondition },
+        ];
+        delete query[condition.field];
+      } else if (query.$and) {
+        // Check if $and already has conditions for this field
+        const hasFieldInAnd = query.$and.some(
+          (item) => condition.field in item
+        );
+        if (hasFieldInAnd) {
+          // Third or more condition for same field - push to existing $and
           query.$and.push({ [condition.field]: mongoCondition });
+        } else {
+          // Different field - add normally
+          query[condition.field] = mongoCondition;
         }
       } else {
+        // First occurrence of this field
         query[condition.field] = mongoCondition;
       }
     }
