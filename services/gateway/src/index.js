@@ -14,6 +14,10 @@ import apiKeyAuth from "./middleware/apiKeyAuth.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Trust proxy - REQUIRED for production (Render, Railway, etc.)
+// This enables Express to correctly identify client IPs behind proxies
+app.set("trust proxy", 1);
+
 // Initialize cache
 const cache = new Cache(parseInt(process.env.CACHE_TTL_SECONDS) || 300);
 
